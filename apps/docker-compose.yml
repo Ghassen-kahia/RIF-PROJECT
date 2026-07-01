@@ -1,4 +1,4 @@
-version: '3.9'
+
 
 services:
   db:
@@ -35,6 +35,18 @@ services:
       - odoo-filestore:/var/lib/odoo
     networks:
       - odoo-net
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    depends_on:
+      - odoo
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/odoo.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - odoo-net
+  
 
 volumes:
   postgres-data:

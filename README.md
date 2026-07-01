@@ -41,6 +41,11 @@ Odoo est accessible sur :
 - `http://localhost:8069` (accès direct)
 - `http://erp.local` (via le reverse proxy Nginx)
 
+- Odoo Login:
+- URL: http://erp.local
+- Username: admin
+- Password: admin (development default after first initialization)
+
 ## Architecture
 
 - **db** : PostgreSQL 15, isolé sur le réseau interne `odoo-net`, aucun port publié sur l'hôte.

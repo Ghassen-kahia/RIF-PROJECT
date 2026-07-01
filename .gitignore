@@ -1,0 +1,4 @@
+.env
+*.log
+__pycache__/
+backup_*.tar.gz

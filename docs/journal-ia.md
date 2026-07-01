@@ -20,3 +20,8 @@
 **Contexte** : automatiser un backup complet (dump SQL + filestore) sans arrêter les conteneurs.
 **Ce que l'IA a généré** : script bash avec pg_dump via docker exec, copie du filestore via docker cp, archive tar.gz horodatée, logging dans un fichier.
 **Ce que j'ai vérifié** : que le nom de la base dans DB_NAME correspondait bien à la base réellement utilisée par Odoo (odoo), pas une hypothèse de nommage.
+
+## Prompt 5 — Debug restauration filestore (Tâche 2.2)
+**Contexte** : après restauration du filestore via docker cp, Odoo plantait avec une erreur de permissions sur /var/lib/odoo/sessions.
+**Diagnostic** : docker cp copie les fichiers en tant que root, écrasant la propriété attendue par le processus Odoo (UID 101).
+**Ce que j'ai appris** : toujours vérifier/corriger les permissions après une restauration de volume via docker cp, avant de redémarrer le service qui dépend de ce volume.

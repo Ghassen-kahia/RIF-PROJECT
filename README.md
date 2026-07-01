@@ -21,19 +21,19 @@ git clone https://github.com/Ghassen-kahia/RIF-PROJECT.git
 cd RIF-PROJECT/apps
 
 cp .env.example .env
-# edit .env (DB password + Odoo password)
+# Modifier le fichier .env (mot de passe PostgreSQL + configuration Odoo)
 
 echo "127.0.0.1 erp.local" | sudo tee -a /etc/hosts
 
 docker compose up -d
 
-# wait until containers are fully up
+# Vérifier que les conteneurs sont bien démarrés
 docker compose ps
 
-# initialize Odoo database (run once)
+# Initialiser la base de données Odoo (une seule fois au premier lancement)
 docker compose exec odoo odoo -d odoo -i base --stop-after-init
 
-# restart services
+# Redémarrer les services après initialisation
 docker compose restart odoo
 ```
 
@@ -44,7 +44,7 @@ Odoo est accessible sur :
 - Odoo Login:
 - URL: http://erp.local
 - Username: admin
-- Password: admin (development default after first initialization)
+- Password: admin (par défaut en développement après la première initialisation)
 
 ## Architecture
 

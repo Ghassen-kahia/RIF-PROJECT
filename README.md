@@ -85,7 +85,7 @@ docker exec -u root apps-odoo-1 chown -R odoo:odoo /var/lib/odoo
 docker compose restart odoo
 ```
 
-## Structure du dépôt
+## 📁 Structure du dépôt
 apps/
 ├── docker-compose.yml   # Stack complète (db, odoo, nginx)
 ├── .env.example          # Variables attendues (le vrai .env n'est jamais commité)

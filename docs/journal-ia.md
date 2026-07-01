@@ -15,3 +15,8 @@
 **Contexte** : exposer Odoo via erp.local en passant par un service nginx plutôt que directement sur le port 8069.
 **Ce que l'IA a généré** : config nginx avec proxy_pass vers odoo:8069, headers X-Forwarded-* pour éviter les liens cassés, et un bloc websocket séparé.
 **Ce que j'ai appris** : sans les headers X-Forwarded-Proto/Host, Odoo peut générer des redirections incorrectes car il ignore qu'il est derrière un proxy.
+
+## Prompt 4 — Script de sauvegarde (Tâche 2.1)
+**Contexte** : automatiser un backup complet (dump SQL + filestore) sans arrêter les conteneurs.
+**Ce que l'IA a généré** : script bash avec pg_dump via docker exec, copie du filestore via docker cp, archive tar.gz horodatée, logging dans un fichier.
+**Ce que j'ai vérifié** : que le nom de la base dans DB_NAME correspondait bien à la base réellement utilisée par Odoo (odoo), pas une hypothèse de nommage.

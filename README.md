@@ -19,9 +19,22 @@ proxy Nginx, avec script de sauvegarde automatisé et procédure de restauration
 ```bash
 git clone https://github.com/Ghassen-kahia/RIF-PROJECT.git
 cd RIF-PROJECT/apps
-cp .env.example .env    # puis éditer .env avec un vrai mot de passe
+
+cp .env.example .env
+# edit .env (DB password + Odoo password)
+
 echo "127.0.0.1 erp.local" | sudo tee -a /etc/hosts
+
 docker compose up -d
+
+# wait until containers are fully up
+docker compose ps
+
+# initialize Odoo database (run once)
+docker compose exec odoo odoo -d odoo -i base --stop-after-init
+
+# restart services
+docker compose restart odoo
 ```
 
 Odoo est accessible sur :

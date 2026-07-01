@@ -25,3 +25,10 @@
 **Contexte** : après restauration du filestore via docker cp, Odoo plantait avec une erreur de permissions sur /var/lib/odoo/sessions.
 **Diagnostic** : docker cp copie les fichiers en tant que root, écrasant la propriété attendue par le processus Odoo (UID 101).
 **Ce que j'ai appris** : toujours vérifier/corriger les permissions après une restauration de volume via docker cp, avant de redémarrer le service qui dépend de ce volume.
+
+## Bilan de la journée
+Ce que j'ai appris de nouveau aujourd'hui : la différence concrète entre `docker compose down`
+et `down -v` sur la persistance des volumes, l'importance des headers X-Forwarded-* pour un
+reverse proxy devant une application web, et le fait que `docker cp` copie toujours en tant
+que root — un piège classique en restauration qu'il faut systématiquement corriger avec un
+`chown` avant de redémarrer le service concerné.
